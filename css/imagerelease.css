@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    width: 80%; /* Set the width of the container to a percentage */
+    width: 95%; /* Set the width of the container to a percentage */
     max-width: 800px; /* Limit maximum width */
     margin: 0 auto; /* Center the container */
     text-align: center; 
