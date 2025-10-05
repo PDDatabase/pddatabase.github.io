@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    background-color: #0d1117;
+    color: #f8f8f2; /* Offwhite color */
+}
+
+.container {
+    width: 80%; /* Set the width of the container */
+    max-width: 800px; /* Limit maximum width */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around the content */
+}
+
+.top-logo {
+    display: block;
+    margin: 20px auto; /* Center the logo */
+    cursor: pointer; /* Pointer cursor for logo */
+    width: 80%;
+}
+
+.article-title {
+    font-size: 2em; /* Title size */
+    margin: 20px 0; /* Margin around the title */
+    text-align: center;
+}
+
+.article-content {
+    margin: 20px 0; /* Margin around the content */
+    text-align: center;
+}
+
+.bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px; /* Padding on the bottom bar */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.bottom-left {
+    align-self: flex-start; /* Align copyright to the left */
+}
+
+.bottom-right {
+    align-self: flex-end; /* Align link to the right */
+}
+
+.light-blue-link {
+    color: lightblue;
+    text-decoration: none;
+}
+
+.light-blue-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+h2 {
+    font-size: 26px;
+    color: rgb(107, 255, 114);
+}
+
+p {
+    font-size: 16px;
+}
+
+img {
+    margin: 10px auto;
+    max-width: 80%;
+}
+
+h3 {
+    margin: 26px 0;
+    font-size: 24px;
+}
+
+a {
+    color: rgb(0, 217, 255); /* Color when the link is pressed */
+}
+
+a:active {
+    color: rgb(0, 121, 142); /* Color when the link is pressed */
+}

@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    background-color: #0d1117;
+    color: #f8f8f2; /* Offwhite color */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content and bottom */
+    height: 100vh;
+}
+
+.container {
+    width: 80%; /* Set the width of the container to a percentage */
+    max-width: 800px; /* Limit maximum width */
+    margin: 0 auto; /* Center the container */
+    text-align: center; 
+}
+
+
+.top-logo {
+    margin: 30px auto; /* Space above and below the logo */
+    cursor: pointer; /* Pointer cursor for logo */
+    width: 60%;
+}
+
+.releases-list {
+    width: 100%;
+    padding: 0 20px; /* Padding for side */
+}
+
+.release-item {
+    background-color: #1a1a1a; /* Slightly lighter than background */
+    padding: 8px; /* Padding within each release item */
+    margin: 10px 0; /* Margin between items */
+    cursor: pointer; /* Pointer cursor for each item */
+    transition: background-color 0.3s; /* Transition effect */
+    font-size: 18px;
+    box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.5); /* White shadow */
+}
+
+.release-item:hover {
+    background-color: #333; /* Darker background on hover */
+}
+
+.bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px; /* Padding on the bottom bar */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.bottom-left {
+    align-self: flex-start; /* Align copyright to the left */
+}
+
+.bottom-right {
+    align-self: flex-end; /* Align link to the right */
+}
+
+.light-blue-link {
+    color: lightblue;
+    text-decoration: none;
+}
+
+.light-blue-link:hover {
+    text-decoration: underline; /* Underline on hover */
+}
