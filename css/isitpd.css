@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: monospace;
-    background-color: #0d1117;
+    background-color: #010409;
     color: #f8f8f2; /* Offwhite color */
 }
 
@@ -31,6 +31,8 @@ body {
 }
 
 .bottom-bar {
+    background-color: #0d1117;
+    border-top: solid 1px #2f353d;
     display: flex;
     justify-content: space-between;
     width: 100%;
