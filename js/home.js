@@ -11,7 +11,10 @@ async function fetchFolderData() {
         for (const folder of folders) {
             if (folder.type === 'dir') { // Only consider directories
                 const folderContents = await fetch(folder.url).then(res => res.json());
-                const imageFiles = folderContents.filter(file => file.type === 'file' && file.name !== 'data.txt'); // Exclude data.txt
+                const imageFiles = folderContents.filter(file => file.type === 'file' && 
+                    file.name !== 'data.txt' && 
+                    !file.name.toLowerCase().endsWith('.raw') && 
+                    !file.name.toLowerCase().endsWith('.arw')); // Exclude data.txt, .RAW, and .ARW files
                 totalImages += imageFiles.length; // Count images
                 totalAssets += imageFiles.length;
                 totalReleases++; // Increment release count for each folder

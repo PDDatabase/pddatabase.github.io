@@ -3,14 +3,25 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
     try {
         const response = await fetch(folderUrl);
         const files = await response.json();
-        const imageFiles = files.filter(file => file.type === 'file' && file.name !== 'data.txt');
+        const imageFiles = files.filter(file => file.type === 'file' && 
+            file.name !== 'data.txt' && 
+            !file.name.toLowerCase().endsWith('.raw') && 
+            !file.name.toLowerCase().endsWith('.arw'));
 
         const grid = document.getElementById("image-grid");
 
         // Calculate how many images to load
         const imagesToLoad = imageFiles.slice(offset, offset + 6);
+        
+        const rawFiles = files.filter(file => file.type === 'file' && 
+            (file.name.toLowerCase().endsWith('.raw') || file.name.toLowerCase().endsWith('.arw')))
+            .reduce((acc, file) => {
+                const name = file.name.split('.')[0]; // Get the base name
+                acc[name] = file.download_url; // Map base name to download URL
+                return acc;
+            }, {});
 
-        // Load images into the grid
+
         for (const file of imagesToLoad) {
             const item = document.createElement("div");
             item.className = "image-item";
@@ -18,6 +29,19 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
             const img = document.createElement("img");
             img.src = file.download_url; // URL to the image
             img.alt = file.name; // Alt text for the image
+
+            const rawFileName = file.name.split('.')[0]; // Get the base name
+            if (rawFiles[rawFileName]) {
+                const rawButton = document.createElement("button");
+                rawButton.className = "raw-button";
+                rawButton.style.fontWeight = 'bold'; // Make text bold
+                rawButton.textContent = "RAW"; // Set button text
+                rawButton.onclick = (event) => {
+                    event.stopPropagation(); // Prevent the image click event
+                    window.open(rawFiles[rawFileName], '_blank'); // Open RAW download URL
+                };
+                item.appendChild(rawButton); // Add the RAW button above the download button
+            }
 
             const button = document.createElement("button");
             button.className = "download-button";
@@ -28,7 +52,6 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
                 window.open(file.download_url, '_blank'); // Open download URL in a new tab
             };
 
-            // Set up click event for redirecting to image view
             item.onclick = () => {
                 //window.location.href = `/images/image?i=${file.name}`; // Redirect to image view
             };
@@ -37,6 +60,7 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
             item.appendChild(button);
             grid.appendChild(item);
         }
+
 
         // Update button visibility
         const loadMoreButton = document.getElementById("load-more-button");

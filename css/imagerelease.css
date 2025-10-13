@@ -83,6 +83,19 @@ body {
     border-radius: 5px; /* Rounded corners for the button */
 }
 
+.raw-button {
+    position: absolute;
+    bottom: 5px;
+    left: 45px;
+    background-color: rgba(255, 0, 0, 0.6); /* Button background */
+    color: rgb(227, 227, 227);
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 0 5px;
+    border-radius: 5px; /* Rounded corners for the button */
+}
+
 .load-more-button {
     margin: 20px auto; /* Space around the load button */
     padding: 10px 20px;

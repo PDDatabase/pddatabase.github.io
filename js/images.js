@@ -31,7 +31,11 @@ async function fetchReleases() {
                 date = dateLine.replace('datetaken: ', '').trim(); // Remove "datetaken: " and trim spaces
             }
 
-            const imageCount = folderContents.filter(file => file.type === 'file' && file.name !== 'data.txt').length; // Exclude data.txt
+            
+            const imageCount = folderContents.filter(file => file.type === 'file' && 
+                file.name !== 'data.txt' && 
+                !file.name.toLowerCase().endsWith('.raw') && 
+                !file.name.toLowerCase().endsWith('.arw')).length; // Exclude data.txt, .RAW, and .ARW files
 
             // Update the release object with the image count and date
             release.imageCount = imageCount;
