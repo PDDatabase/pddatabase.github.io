@@ -81,6 +81,7 @@ body {
     cursor: pointer;
     padding: 0 5px;
     border-radius: 5px; /* Rounded corners for the button */
+    z-index: 900;
 }
 
 .raw-button {
@@ -94,6 +95,7 @@ body {
     cursor: pointer;
     padding: 0 5px;
     border-radius: 5px; /* Rounded corners for the button */
+    z-index: 900;
 }
 
 .load-more-button {
@@ -114,4 +116,5 @@ body {
     width: 112px; /* Set an appropriate width for the image */
     height: 21px; /* Set an appropriate height for the image */
     opacity: 0.8;
+    z-index: 10;
 }
