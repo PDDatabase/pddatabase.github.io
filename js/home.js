@@ -6,6 +6,9 @@ async function fetchFolderData() {
 
     try {
         const response = await fetch(repoUrl);
+        if (response.status != 200) {
+            document.getElementById("giterror").classList.remove("hidden");
+        }
         const folders = await response.json();
 
         for (const folder of folders) {
@@ -89,3 +92,5 @@ function adjustBottomBar() {
 // Call the function on load and when resizing the window
 window.addEventListener('load', adjustBottomBar);
 window.addEventListener('resize', adjustBottomBar);
+
+document.getElementById("IAWe").href = "https://web.archive.org/"+document.location.href;

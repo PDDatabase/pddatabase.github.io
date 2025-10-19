@@ -2,6 +2,9 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
     const folderUrl = `https://api.github.com/repos/PDDatabase/PDImages/contents/${releaseNumber}`; 
     try {
         const response = await fetch(folderUrl);
+        if (response.status != 200) {
+            document.getElementById("giterror").classList.remove("hidden");
+        }
         const files = await response.json();
         const imageFiles = files.filter(file => file.type === 'file' && 
             file.name !== 'data.txt' && 
@@ -69,7 +72,6 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
         } else {
             loadMoreButton.style.display = 'block'; // Show if more images to load
         }
-
     } catch (error) {
         console.error("Error fetching images:", error);
     }
@@ -79,10 +81,33 @@ async function fetchReleaseImages(releaseNumber, offset = 0) {
 const urlParams = new URLSearchParams(window.location.search);
 const releaseNumber = urlParams.get('n');
 
+async function addArchiveLink() {
+    const folderContentsResponse = await fetch(`https://api.github.com/repos/PDDatabase/PDImages/contents/${releaseNumber}`);
+    if (folderContentsResponse.status != 200) {
+        document.getElementById("giterror").classList.remove("hidden");
+    }
+    const folderContents = await folderContentsResponse.json();
+
+    // Get the date from data.txt file
+    const dataFile = folderContents.find(file => file.name === 'data.txt');
+
+    const dataResponse = await fetch(dataFile.download_url);
+    if (dataResponse.status != 200) {
+        document.getElementById("giterror").classList.remove("hidden");
+    }
+    const dataText = await dataResponse.text();
+    const iaLine = dataText.split('\n')[2]; // Get the first line
+    const iaLink = iaLine.replace('ia: ', '').trim();
+    document.getElementById("IAI").href = iaLink;
+    document.getElementsByClassName("IAI")[0].classList.remove("hidden");
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const releaseTitle = document.getElementById("release-title");
     releaseTitle.textContent += releaseNumber; // Set the title with the release number
-    
+    // Load Archive Link
+    addArchiveLink();
+
     // Load initial images
     fetchReleaseImages(releaseNumber);
 
@@ -133,3 +158,8 @@ function adjustBottomBar() {
 // Call the function on load and when resizing the window
 window.addEventListener('load', adjustBottomBar);
 window.addEventListener('resize', adjustBottomBar);
+
+document.getElementById("IAW").href = "https://web.archive.org/"+document.location.href;
+document.getElementsByClassName("IAW")[0].classList.remove("hidden");
+
+document.getElementById("IAWe").href = "https://web.archive.org/"+document.location.href;

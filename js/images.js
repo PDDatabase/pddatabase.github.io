@@ -2,6 +2,9 @@ async function fetchReleases() {
     const repoUrl = "https://api.github.com/repos/PDDatabase/PDImages/contents"; // GitHub API endpoint
     try {
         const response = await fetch(repoUrl);
+        if (response.status != 200) {
+            document.getElementById("giterror").classList.remove("hidden");
+        }
         const folders = await response.json();
         const releasesListElement = document.getElementById("releases-list");
         releasesListElement.innerHTML = ""; // Clear any existing content
@@ -18,6 +21,9 @@ async function fetchReleases() {
         for (const release of releases) {
             // Fetch the images in the current release folder
             const folderContentsResponse = await fetch(release.url);
+            if (folderContentsResponse.status != 200) {
+                document.getElementById("giterror").classList.remove("hidden");
+            }
             const folderContents = await folderContentsResponse.json();
             
             // Get the date from data.txt file
@@ -27,6 +33,9 @@ async function fetchReleases() {
             let thum = "/assets/cc/pd.xlarge.png";
             if (dataFile) {
                 const dataResponse = await fetch(dataFile.download_url);
+                if (dataResponse.status != 200) {
+                    document.getElementById("giterror").classList.remove("hidden");
+                }
                 const dataText = await dataResponse.text();
                 const dateLine = dataText.split('\n')[0]; // Get the first line
                 date = dateLine.replace('datetaken: ', '').trim(); // Remove "datetaken: " and trim spaces
@@ -155,3 +164,5 @@ adjustVisibility();
 
 // Add event listener for window resize
 window.addEventListener('resize', adjustVisibility);
+
+document.getElementById("IAWe").href = "https://web.archive.org/"+document.location.href;

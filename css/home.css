@@ -57,7 +57,7 @@ body {
 
 .text-line.one {
     color: lightgreen;
-    font-size: 20px; /* Increase font size */
+    font-size: 18px; /* Increase font size */
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2); /* Offwhite shadow */
 }
 
@@ -96,4 +96,47 @@ body {
 
 .light-blue-link:hover {
     text-decoration: underline; /* Underline on hover */
+}
+
+.hidden {
+    display: none;
+}
+
+.iadiv {
+    display: inline;
+}
+
+.IA {
+    width: 70%;
+    max-width: 200px;
+    margin-top: 20px;
+}
+
+.IAI {
+    width: 30%;
+    max-width: 180;
+    margin: 10px;
+}
+
+.IAW {
+    width: 30%;
+    max-width: 180;
+    margin: 10px;
+}
+
+.giterror {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background-color: #0d1117;
+    border: dashed 2px black;
+    padding: 10px;
+}
+
+.giterror h1 {
+    color: rgb(200,0,0)
 }
