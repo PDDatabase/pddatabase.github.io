@@ -83,3 +83,19 @@ a {
 a:active {
     color: rgb(0, 121, 142); /* Color when the link is pressed */
 }
+
+@keyframes fadeRed {
+    0% {
+        color: darkred;  /* Starting color */
+    }
+    50% {
+        color: red;      /* Midpoint color */
+    }
+    100% {
+        color: darkred;  /* Ending color */
+    }
+}
+
+.flashing {
+    animation: fadeRed 1s infinite; /* Adjust duration and repetition */
+}
